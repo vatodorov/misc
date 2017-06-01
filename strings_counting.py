@@ -5,6 +5,8 @@ Two alternatives ways to count words/strings
 """
 
 ################## Solution 1
+# opec_words = ['aa', 'bb', 'ff', 'ff', 'aa']
+
 unwanted_chars = ".,-_()/\#%!"
     
 opec = open("C:/Users/bre49823/Desktop/opec_newsletter.txt", encoding = "utf8").read()
@@ -13,17 +15,25 @@ opec3 = opec2.strip(unwanted_chars)
 opec3 = opec3.lower()
 opec3 = opec3.split(" ")
 
-opec_words = ['aa', 'bb', 'ff', 'ff', 'aa']
-
-len(opec_words)
+len(opec3)
 
 def wordListToFreqDict(words):
     wordfreq = [words.count(p) for p in words]
     return dict(zip(words, wordfreq))
 
-words_frequency = wordListToFreqDict(opec_words)
+def sortFreqDict(freqdict):
+    aux = [(freqdict[key], key) for key in freqdict]
+    aux.sort()
+    aux.reverse()
+    return aux
 
-sorted(words_frequency.values())
+
+words_frequency = wordListToFreqDict(opec3)
+sorteddict = sortFreqDict(words_frequency)
+
+for s in sorteddict: print(str(s))
+
+# Search for a word in the dictionary
 
 
 ################## Solution 2
@@ -44,3 +54,7 @@ for raw_word in words:
     if word not in wordfreq:
         wordfreq[word] = 0 
     wordfreq[word] += 1
+    
+    
+    
+    
