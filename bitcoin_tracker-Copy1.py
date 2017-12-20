@@ -39,11 +39,11 @@ def get_all_transactions(bitcoin_address):
     try:
         results  = response.json()
     except:
-        print ("[!] Error retrieving bitcoin transactions. Please re-run this script.")
+        print "[!] Error retrieving bitcoin transactions. Please re-run this script."
         return transactions
 
     if results['totalItems'] == 0:
-        print ("[*] No transactions for %s") % bitcoin_address
+        print "[*] No transactions for %s" % bitcoin_address
         return transactions
 
     transactions.extend(results['items'])
@@ -61,7 +61,7 @@ def get_all_transactions(bitcoin_address):
     
         transactions.extend(results['items'])
     
-    print ("[*] Retrieved %d bitcoin transactions.") % len(transactions)
+    print "[*] Retrieved %d bitcoin transactions." % len(transactions)
     
     return transactions
 
@@ -90,7 +90,7 @@ def get_unique_bitcoin_addresses(transaction_list):
                         
                         bitcoin_addresses.append(address)
     
-    print ("[*] Identified %d unique bitcoin addresses.") % len(bitcoin_addresses)
+    print "[*] Identified %d unique bitcoin addresses." % len(bitcoin_addresses)
     
     return bitcoin_addresses
 
@@ -105,7 +105,7 @@ def search_webhose(bitcoin_addresses):
     
     for bitcoin_address in bitcoin_addresses:
         
-        print ("[*] Searching %d of %d bitcoin addresses.") % (count,len(bitcoin_addresses))
+        print "[*] Searching %d of %d bitcoin addresses." % (count,len(bitcoin_addresses))
         
         # search for the bitcoin address
         search_url = webhose_base_url + webhose_darkweb_url + bitcoin_address
@@ -148,7 +148,7 @@ def search_webhose(bitcoin_addresses):
             result     = response.json()
         
         if bitcoin_to_hidden_services.has_key(bitcoin_address):        
-            print ("[*] Discovered %d hidden services connected to %s") % (len(bitcoin_to_hidden_services[bitcoin_address]),bitcoin_address)
+            print "[*] Discovered %d hidden services connected to %s" % (len(bitcoin_to_hidden_services[bitcoin_address]),bitcoin_address)
         
         count += 1
     
@@ -202,7 +202,7 @@ def build_graph(source_bitcoin_address,transaction_list,hidden_services):
 
 
 # get all of the bitcoin transactions  
-print ("[*] Retrieving all transactions from the blockchain for %s") % bitcoin_address
+print "[*] Retrieving all transactions from the blockchain for %s" % bitcoin_address
 
 transaction_list = get_all_transactions(bitcoin_address)
 
@@ -218,4 +218,4 @@ if len(transaction_list) > 0:
     # graph the bitcoin transactions
     build_graph(bitcoin_address,transaction_list, hidden_services)
     
-    print ("[*] Done! Open the graph file and happy hunting!")
+    print "[*] Done! Open the graph file and happy hunting!"
