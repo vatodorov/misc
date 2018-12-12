@@ -28,3 +28,8 @@ res = sumOfIntegers(_arr);
 f.write(str(res) + "\n")
 
 f.close()
+
+
+# This is a test
+a = 5 + 2
+print a
